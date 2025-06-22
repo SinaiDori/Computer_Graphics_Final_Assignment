@@ -26,9 +26,19 @@ function degrees_to_radians(degrees) {
   return degrees * (pi / 180);
 }
 
-// Create basketball court
 function createBasketballCourt() {
-  // Court floor - just a simple brown surface
+  // Out-of-bounds floor (larger, lighter color)
+  const outOfBoundsGeometry = new THREE.BoxGeometry(36, 0.18, 20);
+  const outOfBoundsMaterial = new THREE.MeshPhongMaterial({
+    color: 0xd4d4d4,  // Light gray
+    shininess: 30
+  });
+  const outOfBounds = new THREE.Mesh(outOfBoundsGeometry, outOfBoundsMaterial);
+  outOfBounds.position.y = -0.01; // Slightly below court
+  outOfBounds.receiveShadow = true;
+  scene.add(outOfBounds);
+
+  // Court floor - on top of out-of-bounds area
   const courtGeometry = new THREE.BoxGeometry(30, 0.2, 15);
   const courtMaterial = new THREE.MeshPhongMaterial({
     color: 0xc68642,  // Brown wood color
@@ -227,16 +237,16 @@ function createHoop(xPos, side) {
     new THREE.CylinderGeometry(0.1, 0.1, 3.5, 12),
     poleMat
   );
-  pole.position.set(-0.8, 1.75, 0);   // behind the backboard
+  pole.position.set(-2.5, 1.75, 0);   // Well behind the backboard, in out-of-bounds area
   pole.castShadow = pole.receiveShadow = true;
   g.add(pole);
 
   /* horizontal support arm - connects pole to backboard */
   const arm = new THREE.Mesh(
-    new THREE.BoxGeometry(0.8, 0.1, 0.1),  // Length to reach from pole to backboard
+    new THREE.BoxGeometry(2.5, 0.1, 0.1),  // Longer arm to reach from out-of-bounds pole
     poleMat
   );
-  arm.position.set(-0.4, 3.05, 0);  // Centered between pole and backboard
+  arm.position.set(-1.25, 3.05, 0);  // Centered between pole and backboard
   arm.rotation.z = 0;  // Perfectly horizontal
   g.add(arm);
 
