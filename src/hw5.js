@@ -21,6 +21,16 @@ scene.add(directionalLight);
 renderer.shadowMap.enabled = true;
 directionalLight.castShadow = true;
 
+// Configure shadow camera for better shadow coverage
+directionalLight.shadow.camera.left = -20;
+directionalLight.shadow.camera.right = 20;
+directionalLight.shadow.camera.top = 20;
+directionalLight.shadow.camera.bottom = -20;
+directionalLight.shadow.camera.near = 0.1;
+directionalLight.shadow.camera.far = 50;
+directionalLight.shadow.mapSize.width = 2048;
+directionalLight.shadow.mapSize.height = 2048;
+
 function degrees_to_radians(degrees) {
   var pi = Math.PI;
   return degrees * (pi / 180);
@@ -270,6 +280,8 @@ function createHoop(xPos, side) {
   );
   arm.position.set(-1.25, 3.05, 0);  // Centered between pole and backboard
   arm.rotation.z = 0;  // Perfectly horizontal
+  arm.castShadow = true;
+  arm.receiveShadow = true;
   g.add(arm);
 
   /* rotate the whole group so the backboard faces centre court */
