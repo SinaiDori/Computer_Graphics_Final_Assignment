@@ -44,7 +44,7 @@ function createBasketballCourt() {
     shininess: 30
   });
   const outOfBounds = new THREE.Mesh(outOfBoundsGeometry, outOfBoundsMaterial);
-  outOfBounds.position.y = -0.01; // Slightly below court
+  outOfBounds.position.y = -0.05; // Slightly below court
   outOfBounds.receiveShadow = true;
   scene.add(outOfBounds);
 
