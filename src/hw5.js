@@ -30,7 +30,7 @@ function createBasketballCourt() {
   // Out-of-bounds floor (larger, lighter color)
   const outOfBoundsGeometry = new THREE.BoxGeometry(36, 0.18, 20);
   const outOfBoundsMaterial = new THREE.MeshPhongMaterial({
-    color: 0xd4d4d4,  // Light gray
+    color: 0x1a4d2e,  // Dark green color
     shininess: 30
   });
   const outOfBounds = new THREE.Mesh(outOfBoundsGeometry, outOfBoundsMaterial);
@@ -71,6 +71,28 @@ createUI();
 function createCourtLines() {
   const mat = new THREE.LineBasicMaterial({ color: 0xffffff });
   const y = 0.11;           // 0.01 m above floor top
+
+  /* Perimeter lines (sidelines and baselines) */
+  // Top sideline
+  addLine(
+    new THREE.Vector3(-COURT_LENGTH / 2, y, -COURT_WIDTH / 2),
+    new THREE.Vector3(COURT_LENGTH / 2, y, -COURT_WIDTH / 2)
+  );
+  // Bottom sideline
+  addLine(
+    new THREE.Vector3(-COURT_LENGTH / 2, y, COURT_WIDTH / 2),
+    new THREE.Vector3(COURT_LENGTH / 2, y, COURT_WIDTH / 2)
+  );
+  // Left baseline
+  addLine(
+    new THREE.Vector3(-COURT_LENGTH / 2, y, -COURT_WIDTH / 2),
+    new THREE.Vector3(-COURT_LENGTH / 2, y, COURT_WIDTH / 2)
+  );
+  // Right baseline
+  addLine(
+    new THREE.Vector3(COURT_LENGTH / 2, y, -COURT_WIDTH / 2),
+    new THREE.Vector3(COURT_LENGTH / 2, y, COURT_WIDTH / 2)
+  );
 
   /* centre line */
   addLine(
