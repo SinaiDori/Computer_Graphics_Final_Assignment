@@ -361,7 +361,9 @@ function createUI() {
   controls.innerHTML = `
     <strong>Camera Controls:</strong><br>
     O: Toggle orbit camera<br>
-    Mouse: Rotate view (when orbit enabled)
+    Mouse: Rotate view<br>
+    Mouse Wheel: Zoom in/out<br>
+    Cmd/Ctrl + Mouse: Pan/move camera position
   `;
   document.body.appendChild(controls);
 }
